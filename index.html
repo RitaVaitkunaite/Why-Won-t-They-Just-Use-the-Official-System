@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rita Vaitkūnaitė – Why Won't They Just Use the Official System?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #ffffff;
+  --bg2: #f7f6f3;
+  --ink: #151412;
+  --ink2: #3d3a36;
+  --muted: #6e6a64;
+  --faint: #b5b0a8;
+  --line: #e5e2dc;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 3rem; height: 60px;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid transparent;
+  transition: border-color .25s;
+}
+nav.scrolled { border-color: var(--line); }
+.nav-logo {
+  font-family: 'Crimson Pro', serif; font-size: 1rem; font-weight: 600;
+  color: var(--ink); letter-spacing: -.01em; text-decoration: none;
+}
+.nav-right { display: flex; gap: 2rem; }
+.nav-right a {
+  font-size: .75rem; font-weight: 500; color: var(--muted);
+  letter-spacing: .05em; transition: color .15s; text-decoration: none;
+}
+.nav-right a:hover { color: var(--ink); }
+
+.container { max-width: 760px; margin: 0 auto; padding: 0 2rem; }
+
+.anav {
+  position: fixed; top: 60px; left: 0; right: 0; z-index: 90;
+  background: rgba(255,255,255,0.97);
+  border-bottom: 1px solid var(--line);
+  display: flex; overflow-x: auto; scrollbar-width: none;
+  padding: 0 3rem;
+  transform: translateY(-110%); opacity: 0;
+  transition: transform .4s cubic-bezier(.16,1,.3,1), opacity .3s;
+}
+.anav::-webkit-scrollbar { display: none; }
+.anav.show { transform: translateY(0); opacity: 1; }
+.anav a {
+  font-size: .68rem; font-weight: 600; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--faint);
+  padding: .8rem 1rem; white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: color .15s, border-color .15s;
+  text-decoration: none;
+}
+.anav a:hover { color: var(--ink2); }
+.anav a.on { color: var(--ink); border-color: var(--ink); }
+
+
+.title-section { padding: 8.5rem 0 4.5rem; border-bottom: 1px solid var(--line); }
+
+
+.meta-row { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+.meta-pill {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--bg2);
+  padding: 0.3rem 0.75rem;
+  border-radius: 2rem;
+}
+
+h1 {
+  font-family: 'Crimson Pro', serif;
+  font-size: clamp(2.8rem, 6vw, 4.2rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 1.75rem;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  hyphens: manual;
+}
+h1 em { font-style: italic; }
+
+.intro-text {
+  font-size: 1.1rem;
+  color: var(--ink2);
+  line-height: 1.8;
+  max-width: 580px;
+  font-weight: 400;
+}
+
+.section { padding: 4.5rem 0; border-bottom: 1px solid var(--line); }
+
+.section-index {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 2.5rem;
+}
+
+h2 {
+  font-family: 'Crimson Pro', serif;
+  font-size: clamp(1.7rem, 3.5vw, 2.3rem);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.25rem;
+  color: var(--ink);
+}
+
+h3 {
+  font-family: 'Crimson Pro', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 2.5rem 0 0.6rem;
+}
+
+p {
+  font-size: 1rem;
+  color: var(--ink2);
+  line-height: 1.85;
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+/* PROJECT META TABLE */
+.project-meta {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 3rem;
+  gap: 0;
+}
+.project-meta-cell {
+  padding: 1.25rem 1.5rem 1.25rem 0;
+}
+.project-meta-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 0.4rem;
+}
+.project-meta-value {
+  font-size: 0.9rem;
+  color: var(--ink2);
+  line-height: 1.6;
+}
+@media (max-width: 640px) {
+  .project-meta { grid-template-columns: 1fr; }
+  .project-meta-cell { border-right: none; border-bottom: 1px solid var(--line); }
+  .project-meta-cell:last-child { border-bottom: none; }
+}
+
+/* PAIN GRID */
+.pain-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 2rem 0;
+}
+.pain-item {
+  padding: 1.1rem 1.25rem;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  background: var(--bg);
+  transition: background 0.15s;
+}
+.pain-item:hover { background: var(--bg2); }
+.pain-item:nth-child(even) { border-right: none; }
+.pain-item:nth-last-child(-n+2) { border-bottom: none; }
+.pain-num {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.9rem;
+  color: var(--faint);
+  font-style: italic;
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+}
+.pain-text { font-size: 0.88rem; color: var(--ink2); line-height: 1.55; font-weight: 400; }
+
+/* QUOTE */
+blockquote:not(.pullquote-text) {
+  margin: 2rem 0;
+  padding: 1.5rem 1.75rem;
+  background: var(--bg2);
+  border-radius: 6px;
+}
+blockquote:not(.pullquote-text) p {
+  font-family: 'Crimson Pro', serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.65;
+  margin-bottom: 0.5rem;
+}
+blockquote:not(.pullquote-text) cite {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  font-style: normal;
+  text-transform: uppercase;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+
+/* PULLQUOTE */
+.pullquote {
+  position: relative;
+  margin: 2.5rem 0 3rem;
+  padding: 2rem 2rem 1.75rem 4rem;
+}
+.pullquote-mark {
+  position: absolute;
+  top: 0.5rem;
+  left: 0;
+  font-family: 'Crimson Pro', serif;
+  font-size: 5rem;
+  line-height: 1;
+  color: var(--ink);
+  font-weight: 400;
+  font-style: italic;
+  user-select: none;
+  opacity: 1;
+}
+.pullquote-text {
+  font-family: 'Crimson Pro', serif;
+  font-size: clamp(1.15rem, 2.2vw, 1.4rem);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.55;
+  margin: 0 0 0.9rem 0;
+  padding: 0;
+  background: none;
+  border: none;
+}
+.pullquote-cite {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-style: normal;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* STATS */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 2.5rem 0;
+}
+.stat {
+  background: var(--bg2);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  border-right: 1px solid var(--line);
+}
+.stat:last-child { border-right: none; }
+.stat-number {
+  font-family: 'Crimson Pro', serif;
+  font-size: 3rem;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+}
+.stat-label {
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.stats-note {
+  font-size: 0.78rem;
+  color: var(--faint);
+  font-style: italic;
+  margin-top: -1rem;
+  margin-bottom: 2rem;
+  font-family: 'Crimson Pro', serif;
+}
+
+/* PAPERS */
+.papers { display: flex; flex-direction: column; margin: 2rem 0; }
+.paper {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr;
+  gap: 1.25rem;
+  padding: 1.4rem 0;
+  border-bottom: 1px solid var(--line);
+  align-items: start;
+}
+.paper:last-child { border-bottom: none; }
+.paper-year { font-size: 0.78rem; color: var(--faint); font-weight: 500; padding-top: 0.15rem; }
+.paper-title { font-size: 0.92rem; font-weight: 600; color: var(--ink); margin-bottom: 0.3rem; }
+.paper-desc { font-size: 0.86rem; color: var(--muted); line-height: 1.65; font-weight: 400; margin: 0; }
+
+/* REASONS GRID */
+.reasons-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 2rem 0;
+}
+.reason-card {
+  background: var(--bg);
+  padding: 1.4rem;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  transition: background 0.15s;
+}
+.reason-card:hover { background: var(--bg2); }
+.reason-card:nth-child(3n) { border-right: none; }
+.reason-card:nth-last-child(-n+3) { border-bottom: none; }
+.reason-num {
+  font-family: 'Crimson Pro', serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--faint);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.reason-title { font-size: 0.85rem; font-weight: 600; color: var(--ink); margin-bottom: 0.35rem; line-height: 1.35; }
+.reason-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.6; margin: 0; }
+
+/* MINDSET SPLIT */
+.mindset-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 2rem 0;
+}
+.mindset-col { padding: 1.75rem 2rem; background: var(--bg); }
+.mindset-col:first-child { border-right: 1px solid var(--line); background: var(--bg2); }
+.mindset-count {
+  font-family: 'Crimson Pro', serif;
+  font-size: 3rem;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
+}
+.mindset-type {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+.mindset-list { display: flex; flex-direction: column; }
+.mindset-simple-item {
+  font-size: 0.92rem;
+  color: var(--ink2);
+  line-height: 1.55;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.mindset-simple-item:last-child { border-bottom: none; }
+
+@media (max-width: 640px) {
+  .mindset-split { grid-template-columns: 1fr; }
+  .mindset-col:first-child { border-right: none; border-bottom: 1px solid var(--line); }
+}
+
+/* FINDING – full viewport-width editorial moment */
+.finding {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  margin-top: 2.5rem;
+  padding: 2.5rem calc(50vw - 350px);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+  box-sizing: border-box;
+}
+/* suppress the parent section's bottom border – the finding's own border takes over */
+#s-insight {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.finding-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 1.5rem;
+  display: block;
+}
+.finding p {
+  font-family: 'Crimson Pro', serif;
+  font-size: clamp(1.4rem, 2.8vw, 2rem);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.4;
+  margin: 0;
+  letter-spacing: -0.01em;
+  max-width: 36ch;
+  orphans: 3;
+  widows: 3;
+  text-wrap: pretty;
+}
+@media (max-width: 640px) {
+  .finding { padding: 3rem 1.25rem; }
+}
+
+/* BENTLEY CALLOUT */
+.callout {
+  margin: 2.5rem 0;
+  padding: 1.75rem 2rem;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--ink);
+  border-radius: 0 8px 8px 0;
+  background: var(--bg2);
+}
+.callout-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 0.75rem;
+}
+.callout p {
+  font-size: 0.95rem;
+  color: var(--ink);
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* STATUS */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--muted);
+  margin-top: 2rem;
+}
+.status-dot { width: 6px; height: 6px; border-radius: 50%; background: #8a9e7a; }
+
+/* REFLECTION – deliberate close */
+.reflection-section {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  padding: 5rem calc(50vw - 350px) 6rem;
+  background: var(--bg2);
+  border-bottom: none;
+  box-sizing: border-box;
+}
+.reflection-section .section-index { margin-bottom: 2.5rem; }
+@media (max-width: 640px) {
+  .reflection-section { padding: 4rem 1.25rem 5rem; }
+}
+
+footer {
+  border-top: 1px solid var(--line);
+  padding: 3rem 0 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.footer-name { font-family: 'Crimson Pro', serif; font-size: 1rem; color: var(--muted); font-weight: 400; }
+.footer-links { display: flex; gap: 1.5rem; }
+.footer-links a { font-size: 0.8rem; font-weight: 500; color: var(--muted); text-decoration: none; transition: color 0.15s; }
+.footer-links a:hover { color: var(--ink); }
+
+/* RESEARCH QUESTION BLOCK */
+.research-question {
+  padding: 4.5rem 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+}
+.rq-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+.rq-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 1.5rem;
+  display: block;
+}
+.rq-text {
+  font-family: 'Crimson Pro', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.25;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  max-width: 22ch;
+}
+
+@media (max-width: 640px) {
+  nav { padding: 1rem 1.25rem; }
+  .container { padding: 0 1.25rem; }
+  .title-section { padding: 7rem 0 3rem; }
+  .pain-grid, .reasons-grid, .mindset-items, .mindset-label-row { grid-template-columns: 1fr; }
+  .pain-item { border-right: none !important; }
+  .pain-item:nth-last-child(-n+2) { border-bottom: 1px solid var(--line) !important; }
+  .pain-item:last-child { border-bottom: none !important; }
+  .reason-card { border-right: none !important; }
+  .reason-card:nth-last-child(-n+3) { border-bottom: 1px solid var(--line) !important; }
+  .reason-card:last-child { border-bottom: none !important; }
+  .stats-row { grid-template-columns: 1fr; }
+  .stat { border-right: none; border-bottom: 1px solid var(--line); }
+  .stat:last-child { border-bottom: none; }
+  .mindset-header:first-child { border-radius: 8px 8px 0 0; border-right: 1px solid var(--line); border-bottom: none; }
+  .mindset-header:last-child { border-radius: 0; }
+  .mindset-item { border-right: none !important; }
+  .mindset-item:nth-last-child(-n+2) { border-bottom: 1px solid var(--line) !important; }
+  .mindset-item:last-child { border-bottom: none !important; }
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <span class="nav-logo">Rita Vaitkūnaitė</span>
+  <div class="nav-right">
+    <a href="mailto:ritavaitkunaite@gmail.com">ritavaitkunaite@gmail.com</a>
+    <a href="https://www.linkedin.com/in/rita-vaitkūnaitė-62b0981b6/" target="_blank">LinkedIn ↗</a>
+  </div>
+</nav>
+
+<nav class="anav" id="anav">
+  <a href="#s-overview">Overview</a>
+  <a href="#s-discovery">Discovery</a>
+  <a href="#s-pivot">Pivot</a>
+  <a href="#s-literature">Literature</a>
+  <a href="#s-findings">Findings</a>
+  <a href="#s-mindsets">Mindsets</a>
+  <a href="#s-insight">Insight</a>
+  <a href="#s-next">Next steps</a>
+  <a href="#s-reflection">Reflection</a>
+</nav>
+
+<div class="container">
+
+  <div class="title-section" id="hero-section">
+    <h1>Why Won't They Just <em>Use the Official System?</em></h1>
+    <p class="intro-text">An exploratory research project into why people inside organisations constantly work around the systems built to help them – what drives it, what sustains it, and what it might take to design something they'd actually choose to use.</p>
+
+    <div class="project-meta">
+      <div class="project-meta-cell">
+        <div class="project-meta-label">Type</div>
+        <div class="project-meta-value">Self-directed exploratory research</div>
+      </div>
+      <div class="project-meta-cell">
+        <div class="project-meta-label">Methods</div>
+        <div class="project-meta-value">Reddit analysis,<br>Thematic analysis,<br>Literature review</div>
+      </div>
+      <div class="project-meta-cell">
+        <div class="project-meta-label">Sources</div>
+        <div class="project-meta-value">78 Reddit threads,<br>5 academic papers</div>
+      </div>
+      <div class="project-meta-cell">
+        <div class="project-meta-label">Year</div>
+        <div class="project-meta-value">2025</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 01 HOW IT STARTED -->
+  <div class="section" id="s-overview">
+    <div class="section-index">01 &nbsp; Overview</div>
+    <h2>Looking for a real problem</h2>
+    <p>I wanted to find a genuine user problem – not a made-up brief. I went to Reddit because it's where people are honest about frustration. I searched across r/sysadmin, r/ITManagers, r/smallbusiness, and r/SaaS – communities full of people dealing with software tools as part of their everyday job. I was looking for recurring frustrations – the kind that showed up across different users, different company sizes, different industries, and pointed to something structural rather than incidental.</p>
+  </div>
+
+  <!-- 02 REDDIT -->
+  <div class="section" id="s-discovery">
+    <div class="section-index">02 &nbsp; Discovery</div>
+    <h2>10 billing and subscription pain points</h2>
+    <p>I started with AI-generated keyword prompts – phrases like "saas billing is a nightmare" and "unexpected invoice" – then developed my own as patterns emerged. I read through a much larger pool and selected 78 threads where the frustration was specific, recurring, and clearly tied to billing or subscription management. I collected quotes into a working document, used ChatGPT to propose initial groupings, then made the final call on every item myself. One limitation worth naming: Reddit skews toward people frustrated enough to post publicly.</p>
+
+    <div class="pain-grid">
+      <div class="pain-item"><span class="pain-num">01</span><span class="pain-text">Managers buying tools without telling IT – appearing on budgets nobody approved</span></div>
+      <div class="pain-item"><span class="pain-num">02</span><span class="pain-text">Unexpected cloud bills with no visibility into what was being spent or why</span></div>
+      <div class="pain-item"><span class="pain-num">03</span><span class="pain-text">Auto-renewal traps – 30–60 day cancellation windows teams consistently missed</span></div>
+      <div class="pain-item"><span class="pain-num">04</span><span class="pain-text">Shadow IT creating security and support nightmares IT couldn't manage</span></div>
+      <div class="pain-item"><span class="pain-num">05</span><span class="pain-text">No way to track which licences were actually being used</span></div>
+      <div class="pain-item"><span class="pain-num">06</span><span class="pain-text">Former employees still holding access to paid tools months after leaving</span></div>
+      <div class="pain-item"><span class="pain-num">07</span><span class="pain-text">Tool sprawl – multiple teams paying for overlapping products nobody owned</span></div>
+      <div class="pain-item"><span class="pain-num">08</span><span class="pain-text">Finance being the only real lever to control unauthorised purchases</span></div>
+      <div class="pain-item"><span class="pain-num">09</span><span class="pain-text">Subscription tracking done in spreadsheets always out of date</span></div>
+      <div class="pain-item"><span class="pain-num">10</span><span class="pain-text">IT held accountable for budget overruns on tools they never chose</span></div>
+    </div>
+
+    <div class="pullquote">
+      <span class="pullquote-mark">&ldquo;</span>
+      <blockquote class="pullquote-text">I've been tasked with finding EVERY SaaS subscription we are using at a 10,000+ employee company. Outside of going around to every employee and asking… I'm honestly stumped.</blockquote>
+      <cite class="pullquote-cite">– r/sysadmin</cite>
+    </div>
+
+    <p>These weren't edge cases. They appeared consistently across company sizes, from 2-person startups to 10,000-employee enterprises.</p>
+  </div>
+
+  <!-- 03 PIVOT -->
+  <div class="section" id="s-pivot">
+    <div class="section-index">03 &nbsp; The pivot</div>
+    <h2>Shadow IT was underneath everything</h2>
+    <p>As I mapped the pain points, I noticed Shadow IT wasn't just one item on the list – it was underneath almost all of them. The unauthorised purchases, the invisible tools, the offboarding gaps, the budget confusion: they all traced back to the same root. People bypassing official IT systems to get work done.</p>
+    <p>That shifted the research question – from billing symptoms to the organisational behaviour causing them. So I stopped collecting quotes on billing and went to look at Shadow IT specifically.</p>
+  </div>
+
+</div><!-- /container -->
+
+<!-- RESEARCH QUESTION -->
+<div class="research-question">
+  <div class="rq-inner">
+    <span class="rq-label">The research question</span>
+    <div class="rq-text">Why do people constantly work around the official system – and what does that mean for design?</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 04 LITERATURE -->
+  <div class="section" id="s-literature">
+    <div class="section-index">04 &nbsp; Literature review</div>
+    <h2>5 papers across 11 years</h2>
+
+    <div class="papers">
+      <div class="paper"><span class="paper-year">2014</span><div><div class="paper-title">Shadow IT – A View From Behind the Curtain</div><p class="paper-desc">Analysed 19,633 software instances at a Fortune 500 company. Found 15% of installed software was unauthorised, with nearly 59% of employees using unapproved networking apps.</p></div></div>
+      <div class="paper"><span class="paper-year">2017</span><div><div class="paper-title">Perceptions of IT Managers on Shadow IT</div><p class="paper-desc">Interviews with 16 senior IT managers. The two most cited reasons employees bypass IT: perceived as too slow and too expensive.</p></div></div>
+      <div class="paper"><span class="paper-year">2020</span><div><div class="paper-title">Shadow IT – A Systematic Literature Review</div><p class="paper-desc">Mapped why Shadow IT emerges, how organisations evaluate individual instances, and how user capability shapes the kind of Shadow IT that develops.</p></div></div>
+      <div class="paper"><span class="paper-year">2024</span><div><div class="paper-title">Who is the IT Department Anyway</div><p class="paper-desc">Survey of 450 employees and 32 interviews. Identified 10 distinct mindsets – 4 risk-averse, 6 risk-taking – explaining why the same policy produces different behaviours in different people.</p></div></div>
+      <div class="paper"><span class="paper-year">2025</span><div><div class="paper-title">Understanding Shadow IT: IT Accessibility, Work Overload and Employee Strain</div><p class="paper-desc">Quantitative study of 385 employees. Work overload and poor IT accessibility directly increase Shadow IT usage – mediated by employee strain. Shadow IT as a coping mechanism, not a preference.</p></div></div>
+    </div>
+  </div>
+
+  <!-- 05 REASONS -->
+  <div class="section" id="s-findings">
+    <div class="section-index">05 &nbsp; What the literature found</div>
+    <h2>9 reasons why Shadow IT exists</h2>
+
+    <div class="reasons-grid">
+      <div class="reason-card"><div class="reason-num">01</div><div class="reason-title">IT is too slow or too expensive</div><p class="reason-desc">When employees need something and IT can't respond fast enough, they find another way.</p></div>
+      <div class="reason-card"><div class="reason-num">02</div><div class="reason-title">Official tools are insufficient</div><p class="reason-desc">When the approved tool doesn't do what the job requires, employees find one that does.</p></div>
+      <div class="reason-card"><div class="reason-num">03</div><div class="reason-title">Client deadlines override policy</div><p class="reason-desc">Employees can't tell a client that work isn't done because an approved tool isn't available.</p></div>
+      <div class="reason-card"><div class="reason-num">04</div><div class="reason-title">People know the rules but break them</div><p class="reason-desc">Most employees understand the policy and the risks. They still bypass when the official path feels worse.</p></div>
+      <div class="reason-card"><div class="reason-num">05</div><div class="reason-title">Underestimating risk</div><p class="reason-desc">Many users assume organisational monitoring will catch anything dangerous, creating a false sense of protection.</p></div>
+      <div class="reason-card"><div class="reason-num">06</div><div class="reason-title">Personal habits blur into work</div><p class="reason-desc">Tools people use privately – Drive, Dropbox, WhatsApp – migrate into work contexts naturally.</p></div>
+      <div class="reason-card"><div class="reason-num">07</div><div class="reason-title">Controls are easily bypassed</div><p class="reason-desc">Even when IT tries to block tools, technically capable employees find workarounds.</p></div>
+      <div class="reason-card"><div class="reason-num">08</div><div class="reason-title">Response to overload and strain</div><p class="reason-desc">When workload is high and tools are inadequate, employees reach for whatever works fastest.</p></div>
+      <div class="reason-card"><div class="reason-num">09</div><div class="reason-title">Fills genuine gaps</div><p class="reason-desc">Not all Shadow IT is reckless. Some fills real gaps that official systems have failed to address.</p></div>
+    </div>
+  </div>
+
+  <!-- 06 MINDSETS -->
+  <div class="section" id="s-mindsets">
+    <div class="section-index">06 &nbsp; Why one policy never works</div>
+    <h2>10 distinct mindsets around Shadow IT</h2>
+    <p>The 2024 study didn't just find that employees bypass IT – it found they do it for fundamentally different reasons. 10 distinct mindsets emerged, each with a different relationship to risk, rules, and organisational trust. A policy that works for someone who avoids Shadow IT out of genuine security awareness does nothing for someone bypassing IT because a client deadline feels more urgent than a ticket response time.</p>
+
+    <div class="mindset-split">
+      <div class="mindset-col">
+        <div class="mindset-count">4</div>
+        <div class="mindset-type">Risk-averse mindsets</div>
+        <div class="mindset-list">
+          <div class="mindset-simple-item">Avoids Shadow IT to stay out of trouble</div>
+          <div class="mindset-simple-item">Deep IT knowledge makes them aware of the risks</div>
+          <div class="mindset-simple-item">Lets the client or colleague carry the responsibility</div>
+          <div class="mindset-simple-item">Learned from past mistakes, won't repeat them</div>
+        </div>
+      </div>
+      <div class="mindset-col">
+        <div class="mindset-count">6</div>
+        <div class="mindset-type">Risk-taking mindsets</div>
+        <div class="mindset-list">
+          <div class="mindset-simple-item">Assumes everyone already knows the rules, skips the conversation</div>
+          <div class="mindset-simple-item">Thinks they don't use Shadow IT, but they do</div>
+          <div class="mindset-simple-item">Assumes antivirus and anti-phishing cover everything</div>
+          <div class="mindset-simple-item">Bends rules when a deadline is on the line</div>
+          <div class="mindset-simple-item">Used Shadow IT for years without issues, feels untouchable</div>
+          <div class="mindset-simple-item">Uses unauthorised tools because they're free</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 07 FINANCE FINDING -->
+  <div class="section" id="s-insight">
+    <div class="section-index">07 &nbsp; The unexpected finding</div>
+    <h2>Finance is the real leverage point</h2>
+    <p>The most actionable insight didn't come from the literature – it came from sysadmins on Reddit, arriving at the same conclusion independently: stop trying to monitor every device and app. Follow the money instead.</p>
+
+    <div class="pullquote">
+      <span class="pullquote-mark">&ldquo;</span>
+      <blockquote class="pullquote-text">I've found that the best way to control shadow IT is always through finance – if they can't pay for it, they can't use it.</blockquote>
+      <cite class="pullquote-cite">– r/sysadmin</cite>
+    </div>
+
+    <div class="pullquote">
+      <span class="pullquote-mark">&ldquo;</span>
+      <blockquote class="pullquote-text">I have found that the best solution against shadow IT is to ally with the finance department. Convince your CFO that it's a good idea to consolidate all IT expenses in the IT department.</blockquote>
+      <cite class="pullquote-cite">– r/sysadmin</cite>
+    </div>
+
+    <p>When IT tried to fight Shadow IT through monitoring or policy alone, it failed. When finance became an active gatekeeper, it worked. This came up across multiple threads, different roles, different company sizes – independently each time.</p>
+
+    <div class="finding">
+      <div class="finding-label">What this means for design</div>
+      <p>Shadow IT isn't an IT problem – it's a communication and trust problem between IT, finance, and the rest of the organisation. People keep working around the official system because the official system keeps failing them. Any design response probably needs all three groups in&nbsp;the&nbsp;room.</p>
+    </div>
+  </div>
+
+  <!-- 08 OPENS UP -->
+  <div class="section" id="s-next">
+    <div class="section-index">08 &nbsp; What this opens up</div>
+    <h2>Where design could go next</h2>
+    <p>The research points to one area with clear design potential – the approval and request flow that sits between employees, IT, and finance. Right now that flow is either broken (too slow, too bureaucratic) or nonexistent.</p>
+    <p>Getting to a design would mean starting with three groups of people:</p>
+
+    <div class="papers">
+      <div class="paper">
+        <span class="paper-year">Who</span>
+        <div>
+          <div class="paper-title">Sysadmins and IT managers</div>
+          <p class="paper-desc">To understand what they've already tried, where current approval flows break down, and what "good enough" actually looks like from their side of the problem.</p>
+        </div>
+      </div>
+      <div class="paper">
+        <span class="paper-year">Who</span>
+        <div>
+          <div class="paper-title">Finance gatekeepers</div>
+          <p class="paper-desc">To understand how SaaS spending visibility actually works (or doesn't), what signals prompt intervention, and whether they'd want more involvement earlier in the process.</p>
+        </div>
+      </div>
+      <div class="paper">
+        <span class="paper-year">Who</span>
+        <div>
+          <div class="paper-title">Employees who bypass IT</div>
+          <p class="paper-desc">To understand the real friction in the official path – not just the stated reasons, but the moment-by-moment experience that makes a workaround feel faster than asking permission.</p>
+        </div>
+      </div>
+    </div>
+
+    <p>The core question those interviews would need to answer is what the official request process would need to look like for employees to actually choose it over a workaround.</p>
+  </div>
+
+  <!-- 09 REFLECTION -->
+  <div class="section reflection-section" id="s-reflection">
+    <div class="section-index">09 &nbsp; Reflection</div>
+    <h2>What I took from this</h2>
+    <p>This was my first self-directed research project – no brief, no framework, no team. The biggest thing it taught me wasn't a finding; it was how to follow a thread. I started looking for billing pain and ended up in academic literature on organisational psychology. That kind of pivot only happens if you stay genuinely curious about what the data is actually saying, rather than confirming what you expected to find.</p>
+    <p>It also taught me the difference between a symptom and a root cause. Every billing complaint on Reddit turned out to be a symptom. Shadow IT was the cause. That shift in framing – from "what's broken?" to "why does this keep happening?" – is the part of research I want to keep practising.</p>
+  </div>
+
+  <footer>
+    <span class="footer-name">Rita Vaitkūnaitė – 2026</span>
+    <div class="footer-links">
+      <a href="mailto:ritavaitkunaite@gmail.com">ritavaitkunaite@gmail.com</a>
+      <a href="https://www.linkedin.com/in/rita-vaitkūnaitė-62b0981b6/" target="_blank">LinkedIn ↗</a>
+    </div>
+  </footer>
+
+</div><!-- /container 2 -->
+
+<script>
+  const nav = document.getElementById('nav');
+  const anav = document.getElementById('anav');
+  const hero = document.getElementById('hero-section');
+
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 10);
+    anav.classList.toggle('show', window.scrollY > 10);
+  }, { passive: true });
+
+  // keep intersection observer removed – scroll-based show is enough
+
+  // Scroll spy
+  const sections = document.querySelectorAll('.section[id]');
+  const links = document.querySelectorAll('.anav a');
+
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      links.forEach(l => l.classList.remove('on'));
+      const a = document.querySelector(`.anav a[href="#${e.target.id}"]`);
+      if (a) {
+        a.classList.add('on');
+        a.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    });
+  }, { rootMargin: '-25% 0px -65% 0px' });
+
+  sections.forEach(s => spy.observe(s));
+</script>
