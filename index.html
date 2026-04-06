@@ -20,7 +20,7 @@
   --line: #e5e2dc;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 
 body {
   background: var(--bg);
@@ -410,9 +410,8 @@ blockquote:not(.pullquote-text) cite {
 
 /* FINDING – full viewport-width editorial moment */
 .finding {
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
   width: 100vw;
   margin-top: 2.5rem;
   padding: 2.5rem calc(50vw - 350px);
@@ -437,7 +436,7 @@ blockquote:not(.pullquote-text) cite {
 }
 .finding p {
   font-family: 'Crimson Pro', serif;
-  font-size: clamp(1.4rem, 2.8vw, 2rem);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
   font-style: italic;
   font-weight: 400;
   color: var(--ink);
@@ -491,9 +490,8 @@ blockquote:not(.pullquote-text) cite {
 
 /* REFLECTION – deliberate close */
 .reflection-section {
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
   width: 100vw;
   padding: 5rem calc(50vw - 350px) 6rem;
   background: var(--bg2);
@@ -503,7 +501,12 @@ blockquote:not(.pullquote-text) cite {
 }
 .reflection-section .section-index { margin-bottom: 2.5rem; }
 @media (max-width: 640px) {
-  .reflection-section { padding: 4rem 1.25rem 5rem; }
+  .reflection-section {
+    margin-left: -1.25rem;
+    margin-right: -1.25rem;
+    width: auto;
+    padding: 4rem 2.5rem 5rem;
+  }
 }
 
 footer {
@@ -636,6 +639,9 @@ footer {
 
 @media (max-width: 640px) {
   nav { padding: 1rem 1.25rem; }
+  nav { padding: 0.75rem 1.25rem; height: auto; flex-wrap: wrap; gap: 0.5rem; }
+  .nav-right { gap: 1rem; }
+  .anav { top: 80px; padding: 0 1.25rem; }
   .container { padding: 0 1.25rem; }
   .title-section { padding: 7rem 0 3rem; }
   .pain-grid, .reasons-grid, .mindset-items, .mindset-label-row { grid-template-columns: 1fr; }
@@ -710,7 +716,7 @@ footer {
   <div class="section" id="s-overview">
     <div class="section-index">01 &nbsp; Overview</div>
     <h2>Looking for a real problem</h2>
-    <p>I wanted to find a genuine user problem – not a made-up brief. I went to Reddit because it's where people are honest about frustration. I searched across r/sysadmin, r/ITManagers, r/smallbusiness, and r/SaaS – communities full of people dealing with software tools as part of their everyday job. I was looking for recurring frustrations – the kind that showed up across different users, different company sizes, different industries, and pointed to something structural rather than incidental.</p>
+    <p>I wanted to find a genuine user problem – not a made-up brief. I went to Reddit because it's where people are honest about frustration. I searched across <strong>r/sysadmin</strong>, <strong>r/ITManagers</strong>, <strong>r/smallbusiness</strong>, and <strong>r/SaaS</strong> – communities full of people dealing with software tools as part of their everyday job. I was looking for recurring frustrations – the kind that showed up across different users, different company sizes, different industries, and pointed to something structural rather than incidental.</p>
     <p>The project started with billing frustrations – but underneath every complaint about invoices, tool sprawl, and unauthorised purchases was a more fundamental question about why people bypass the systems built to help them. That question drives everything that follows.</p>
   </div>
 
@@ -871,7 +877,7 @@ footer {
 
     <p>The literature spreads across five distinct frames: technical controls, organizational agility, governance projects, behaviour change, and working environment reform. Meanwhile, sysadmins on Reddit converged on something none of the papers focused on.</p>
 
-    <svg width="100%" viewBox="0 0 680 620" style="margin:2rem 0;display:block;overflow:hidden;">
+    <svg width="100%" viewBox="0 0 680 610" style="margin:2rem 0;display:block;overflow:hidden;">
       <defs>
         <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
           <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -888,42 +894,36 @@ footer {
 
       <rect x="280" y="48" width="360" height="68" rx="2" fill="#f7f6f3" stroke="#e5e2dc" stroke-width="0.5"/>
       <text font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="600" x="460" y="68" text-anchor="middle" fill="#151412">Shadow IT – A View From Behind the Curtain</text>
-      <text font-family="Plus Jakarta Sans, sans-serif" font-size="11" x="460" y="86" text-anchor="middle" fill="#3d3a36">Technical controls + clearer policy</text>
-      <text font-family="Plus Jakarta Sans, sans-serif" font-size="11" x="460" y="103" text-anchor="middle" fill="#b5b0a8">Employees will always find a workaround</text>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="10" x="460" y="90" text-anchor="middle" fill="#3d3a36">Technical controls + clearer policy to limit unauthorised tool use.</text>
 
       <rect x="280" y="132" width="360" height="68" rx="2" fill="#f7f6f3" stroke="#e5e2dc" stroke-width="0.5"/>
-      <text font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="600" x="460" y="152" text-anchor="middle" fill="#151412">Perceptions of IT Managers on Shadow IT</text>
-      <text font-family="Plus Jakarta Sans, sans-serif" font-size="11" x="460" y="170" text-anchor="middle" fill="#3d3a36">Make IT more agile</text>
-      <text font-family="Plus Jakarta Sans, sans-serif" font-size="11" x="460" y="187" text-anchor="middle" fill="#b5b0a8">Deliver faster, align with business units</text>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="600" x="460" y="156" text-anchor="middle" fill="#151412">Perceptions of IT Managers on Shadow IT</text>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="10" x="460" y="176" text-anchor="middle" fill="#3d3a36">Make IT more agile – deliver faster, align with business units</text>
 
       <rect x="280" y="216" width="360" height="68" rx="2" fill="#f7f6f3" stroke="#e5e2dc" stroke-width="0.5"/>
-      <text font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="600" x="460" y="236" text-anchor="middle" fill="#151412">Shadow IT – A Systematic Literature Review</text>
-      <text font-family="Plus Jakarta Sans, sans-serif" font-size="11" x="460" y="254" text-anchor="middle" fill="#3d3a36">Run a governance project</text>
-      <text font-family="Plus Jakarta Sans, sans-serif" font-size="11" x="460" y="271" text-anchor="middle" fill="#b5b0a8">Identify, evaluate, implement top-down</text>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="600" x="460" y="243" text-anchor="middle" fill="#151412">Shadow IT – A Systematic Literature Review</text>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="10" x="460" y="263" text-anchor="middle" fill="#3d3a36">Run a governance project – identify, evaluate, implement top-down</text>
 
       <rect x="280" y="300" width="360" height="68" rx="2" fill="#f7f6f3" stroke="#e5e2dc" stroke-width="0.5"/>
-      <text font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="600" x="460" y="320" text-anchor="middle" fill="#151412">Who is the IT Department Anyway</text>
-      <text font-family="Plus Jakarta Sans, sans-serif" font-size="11" x="460" y="338" text-anchor="middle" fill="#3d3a36">Communication + tailored training</text>
-      <text font-family="Plus Jakarta Sans, sans-serif" font-size="11" x="460" y="355" text-anchor="middle" fill="#b5b0a8">Treat it as a behaviour change problem</text>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="600" x="460" y="324" text-anchor="middle" fill="#151412">Who is the IT Department Anyway</text>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="10" x="460" y="344" text-anchor="middle" fill="#3d3a36">Communication + tailored training – treat it as a behaviour change problem</text>
 
-      <rect x="280" y="384" width="360" height="68" rx="2" fill="#f7f6f3" stroke="#e5e2dc" stroke-width="0.5"/>
-      <text font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="600" x="460" y="400" text-anchor="middle" fill="#151412">Understanding Shadow IT: IT Accessibility,</text>
-      <text font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="600" x="460" y="416" text-anchor="middle" fill="#151412">Work Overload and Employee Strain</text>
-      <text font-family="Plus Jakarta Sans, sans-serif" font-size="11" x="460" y="434" text-anchor="middle" fill="#3d3a36">Fix the working environment</text>
-      <text font-family="Plus Jakarta Sans, sans-serif" font-size="11" x="460" y="451" text-anchor="middle" fill="#b5b0a8">Reduce overload, staff adequately</text>
+      <rect x="280" y="384" width="360" height="84" rx="2" fill="#f7f6f3" stroke="#e5e2dc" stroke-width="0.5"/>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="600" x="460" y="404" text-anchor="middle" fill="#151412">Understanding Shadow IT: IT Accessibility,</text>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="600" x="460" y="420" text-anchor="middle" fill="#151412">Work Overload and Employee Strain</text>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="10" x="460" y="443" text-anchor="middle" fill="#3d3a36">Fix the working environment – reduce overload and staff adequately.</text>
 
       <line x1="270" y1="82" x2="270" y2="418" stroke="#e5e2dc" stroke-width="0.5"/>
       <line x1="270" y1="82" x2="280" y2="82" stroke="#e5e2dc" stroke-width="0.5"/>
       <line x1="270" y1="418" x2="280" y2="418" stroke="#e5e2dc" stroke-width="0.5"/>
 
-      <line x1="200" y1="82" x2="232" y2="492" stroke="#b5b0a8" stroke-width="0.75" marker-end="url(#arrow)"/>
-      <line x1="270" y1="250" x2="248" y2="492" stroke="#b5b0a8" stroke-width="0.75" marker-end="url(#arrow)"/>
+      <line x1="120" y1="116" x2="120" y2="510" stroke="#b5b0a8" stroke-width="0.75" marker-end="url(#arrow)"/>
+      <line x1="460" y1="468" x2="460" y2="510" stroke="#b5b0a8" stroke-width="0.75" marker-end="url(#arrow)"/>
 
-      <text font-family="Plus Jakarta Sans, sans-serif" font-size="10" x="340" y="484" text-anchor="middle" fill="#b5b0a8" letter-spacing="1.2">AFTER 11 YEARS OF RESEARCH</text>
-
-      <rect x="40" y="500" width="600" height="56" rx="2" fill="#f7f6f3" stroke="#e5e2dc" stroke-width="0.5"/>
-      <text font-family="Plus Jakarta Sans, sans-serif" font-size="13" font-weight="600" x="340" y="522" text-anchor="middle" fill="#151412">No consensus on how to fix Shadow IT.</text>
-      <text font-family="Plus Jakarta Sans, sans-serif" font-size="11" x="340" y="542" text-anchor="middle" fill="#6e6a64">Six sources, six different answers — technical, organizational, cultural, financial.</text>
+      <rect x="40" y="524" width="600" height="64" rx="2" fill="#f7f6f3" stroke="#e5e2dc" stroke-width="0.5"/>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="10" x="340" y="518" text-anchor="middle" fill="#b5b0a8" letter-spacing="1.2">AFTER 11 YEARS OF RESEARCH</text>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="13" font-weight="600" x="340" y="548" text-anchor="middle" fill="#151412">No consensus on how to fix Shadow IT.</text>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="10" x="340" y="568" text-anchor="middle" fill="#6e6a64">Six sources, six different answers – technical, organizational, cultural, financial.</text>
     </svg>
 
     <p>Meanwhile, sysadmins on Reddit converged on something none of the papers focused on: <em>"I've found that the best way to control shadow IT is always through finance – if they can't pay for it, they can't use it."</em></p>
@@ -1004,7 +1004,7 @@ footer {
   </div>
 
   <footer>
-    <span class="footer-name">Rita Vaitkūnaitė – 2026</span>
+    <span class="footer-name">Rita Vaitkūnaitė</span>
     <div class="footer-links">
       <span style="font-size: 0.8rem; font-weight: 500; color: var(--muted);">ritavaitkunaite@gmail.com</span>
       <a href="https://www.linkedin.com/in/rita-vaitkūnaitė-62b0981b6/" target="_blank">LinkedIn ↗</a>
@@ -1022,7 +1022,6 @@ footer {
     anav.classList.toggle('show', window.scrollY > 10);
   }, { passive: true });
 
-  // Scroll spy
   const sections = document.querySelectorAll('.section[id], .reflection-section[id]');
   const links = document.querySelectorAll('.anav a');
 
@@ -1030,7 +1029,7 @@ footer {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         links.forEach(link => link.classList.remove('on'));
-        const active = document.querySelector(`.anav a[href="#${entry.target.id}"]`);
+        const active = document.querySelector('.anav a[href="#' + entry.target.id + '"]');
         if (active) {
           active.classList.add('on');
           active.scrollIntoView({ inline: 'nearest', block: 'nearest' });
