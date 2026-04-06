@@ -495,6 +495,7 @@ blockquote:not(.pullquote-text) cite {
   width: 100vw;
   padding: 5rem calc(50vw - 350px) 6rem;
   background: var(--bg2);
+  border-top: none;
   border-bottom: none;
   box-sizing: border-box;
 }
@@ -504,7 +505,7 @@ blockquote:not(.pullquote-text) cite {
 }
 
 footer {
-  border-top: 1px solid var(--line);
+  border-top: none;
   padding: 3rem 0 4rem;
   display: flex;
   justify-content: space-between;
@@ -516,6 +517,88 @@ footer {
 .footer-links { display: flex; gap: 1.5rem; }
 .footer-links a { font-size: 0.8rem; font-weight: 500; color: var(--muted); text-decoration: none; transition: color 0.15s; }
 .footer-links a:hover { color: var(--ink); }
+
+/* INLINE RQ */
+.rq-inline {
+  margin: 2rem 0 0;
+  padding: 1.75rem 2rem;
+  border-left: 2px solid var(--ink);
+  background: var(--bg2);
+}
+.rq-inline-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faint);
+  display: block;
+  margin-bottom: 0.75rem;
+}
+.rq-inline-text {
+  font-family: 'Crimson Pro', serif;
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.45;
+}
+
+/* SAMPLING TABLE */
+.sampling-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  font-size: 0.86rem;
+}
+.sampling-table th {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--faint);
+  text-align: left;
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg2);
+}
+.sampling-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink2);
+  line-height: 1.5;
+  vertical-align: top;
+}
+.sampling-table tr:last-child td { border-bottom: none; }
+.sampling-table td:first-child { font-weight: 600; color: var(--ink); white-space: nowrap; }
+.sampling-note {
+  font-size: 0.78rem;
+  color: var(--faint);
+  font-style: italic;
+  margin-top: -1rem;
+  margin-bottom: 2rem;
+  font-family: 'Crimson Pro', serif;
+}
+
+/* LIMITATIONS */
+.limitations-list {
+  margin: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.limitation-item {
+  display: block;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+}
+.limitation-item:last-child { border-bottom: none; }
+.limitation-marker { display: none; }
+.limitation-text {
+  font-size: 0.88rem;
+  color: var(--ink2);
+  line-height: 1.65;
+}
+.limitation-text strong { color: var(--ink); font-weight: 600; }
 
 /* RESEARCH QUESTION BLOCK */
 .research-question {
@@ -585,11 +668,13 @@ footer {
   <a href="#s-overview">Overview</a>
   <a href="#s-discovery">Discovery</a>
   <a href="#s-pivot">Pivot</a>
+  <a href="#s-rq">Research question</a>
   <a href="#s-literature">Literature</a>
   <a href="#s-findings">Findings</a>
   <a href="#s-mindsets">Mindsets</a>
   <a href="#s-insight">Insight</a>
   <a href="#s-next">Next steps</a>
+  <a href="#s-limitations">Limitations</a>
   <a href="#s-reflection">Reflection</a>
 </nav>
 
@@ -610,7 +695,7 @@ footer {
       </div>
       <div class="project-meta-cell">
         <div class="project-meta-label">Sources</div>
-        <div class="project-meta-value">78 Reddit threads,<br>5 academic papers</div>
+        <div class="project-meta-value">75 Reddit threads,<br>5 academic papers</div>
       </div>
       <div class="project-meta-cell">
         <div class="project-meta-label">Year</div>
@@ -624,14 +709,52 @@ footer {
     <div class="section-index">01 &nbsp; Overview</div>
     <h2>Looking for a real problem</h2>
     <p>I wanted to find a genuine user problem – not a made-up brief. I went to Reddit because it's where people are honest about frustration. I searched across r/sysadmin, r/ITManagers, r/smallbusiness, and r/SaaS – communities full of people dealing with software tools as part of their everyday job. I was looking for recurring frustrations – the kind that showed up across different users, different company sizes, different industries, and pointed to something structural rather than incidental.</p>
+    <p>The project started with billing frustrations – but underneath every complaint about invoices, tool sprawl, and unauthorised purchases was a more fundamental question about why people bypass the systems built to help them. That question drives everything that follows.</p>
   </div>
 
   <!-- 02 REDDIT -->
   <div class="section" id="s-discovery">
     <div class="section-index">02 &nbsp; Discovery</div>
-    <h2>10 billing and subscription pain points</h2>
-    <p>I started with AI-generated keyword prompts – phrases like "saas billing is a nightmare" and "unexpected invoice" – then developed my own as patterns emerged. I read through a much larger pool and selected 78 threads where the frustration was specific, recurring, and clearly tied to billing or subscription management. I collected quotes into a working document, used ChatGPT to propose initial groupings, then made the final call on every item myself. One limitation worth naming: Reddit skews toward people frustrated enough to post publicly.</p>
+    <h2>Where the research started</h2>
+    <p>I started with AI-generated keyword prompts – phrases like "saas billing is a nightmare" and "unexpected invoice" – then developed my own as patterns emerged. I read through a much larger pool and selected 75 threads where the frustration was specific, recurring, and clearly tied to billing or subscription management. I collected quotes into a working document, used AI-assisted clustering to propose initial groupings, then reviewed and revised every category myself – collapsing, splitting, or rejecting groupings that didn't hold up across the full dataset.</p>
 
+    <table class="sampling-table">
+      <thead>
+        <tr>
+          <th>Subreddit</th>
+          <th>Threads</th>
+          <th>Why this community</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>r/sysadmin</td>
+          <td>29</td>
+          <td>Shadow IT war stories, unauthorised purchases, licence tracking, and finance as a control lever – the operational frontline</td>
+        </tr>
+        <tr>
+          <td>r/ITManagers</td>
+          <td>10</td>
+          <td>Spend visibility, SaaS sprawl, and dealing with Shadow IT after the fact – the management side of the problem</td>
+        </tr>
+        <tr>
+          <td>r/SaaS</td>
+          <td>7</td>
+          <td>Subscription tracking, billing surprises, and account management – mostly from the vendor and buyer perspective</td>
+        </tr>
+        <tr>
+          <td>r/smallbusiness</td>
+          <td>3</td>
+          <td>Subscription overwhelm where one person manages everything – a different failure mode than enterprise IT</td>
+        </tr>
+        <tr>
+          <td>Other communities</td>
+          <td>26</td>
+          <td>r/cybersecurity, r/msp, r/aws, r/devops, r/azure and others – supplementary perspectives across roles and contexts</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3>10 billing and subscription pain points</h3>
     <div class="pain-grid">
       <div class="pain-item"><span class="pain-num">01</span><span class="pain-text">Managers buying tools without telling IT – appearing on budgets nobody approved</span></div>
       <div class="pain-item"><span class="pain-num">02</span><span class="pain-text">Unexpected cloud bills with no visibility into what was being spent or why</span></div>
@@ -665,7 +788,7 @@ footer {
 </div><!-- /container -->
 
 <!-- RESEARCH QUESTION -->
-<div class="research-question">
+<div class="research-question" id="s-rq">
   <div class="rq-inner">
     <span class="rq-label">The research question</span>
     <div class="rq-text">Why do people constantly work around the official system – and what does that mean for design?</div>
@@ -741,35 +864,82 @@ footer {
   <!-- 07 FINANCE FINDING -->
   <div class="section" id="s-insight">
     <div class="section-index">07 &nbsp; The unexpected finding</div>
-    <h2>Finance is the real leverage point</h2>
-    <p>The most actionable insight didn't come from the literature – it came from sysadmins on Reddit, arriving at the same conclusion independently: stop trying to monitor every device and app. Follow the money instead.</p>
+    <h2>Nobody agrees on how to fix it</h2>
+    <p>After mapping the Reddit findings against five academic papers spanning 11 years, the most striking thing wasn't any single insight – it was the disagreement. Practitioners and researchers are looking at the same problem through completely different lenses and arriving at completely different answers.</p>
 
-    <div class="pullquote">
-      <span class="pullquote-mark">&ldquo;</span>
-      <blockquote class="pullquote-text">I've found that the best way to control shadow IT is always through finance – if they can't pay for it, they can't use it.</blockquote>
-      <cite class="pullquote-cite">– r/sysadmin</cite>
-    </div>
+    <p>The literature spreads across five distinct frames: technical controls, organizational agility, governance projects, behaviour change, and working environment reform. Meanwhile, sysadmins on Reddit converged on something none of the papers focused on.</p>
 
-    <div class="pullquote">
-      <span class="pullquote-mark">&ldquo;</span>
-      <blockquote class="pullquote-text">I have found that the best solution against shadow IT is to ally with the finance department. Convince your CFO that it's a good idea to consolidate all IT expenses in the IT department.</blockquote>
-      <cite class="pullquote-cite">– r/sysadmin</cite>
-    </div>
+    <svg width="100%" viewBox="0 0 680 620" style="margin:2rem 0;display:block;overflow:hidden;">
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="11" x="120" y="24" text-anchor="middle" fill="#b5b0a8" letter-spacing="1.5">REDDIT</text>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="11" x="460" y="24" text-anchor="middle" fill="#b5b0a8" letter-spacing="1.5">5 ACADEMIC PAPERS</text>
+      <line x1="40" y1="32" x2="200" y2="32" stroke="#e5e2dc" stroke-width="0.5"/>
+      <line x1="280" y1="32" x2="640" y2="32" stroke="#e5e2dc" stroke-width="0.5"/>
 
-    <p>When IT tried to fight Shadow IT through monitoring or policy alone, it failed. When finance became an active gatekeeper, it worked. This came up across multiple threads, different roles, different company sizes – independently each time.</p>
+      <rect x="40" y="48" width="160" height="68" rx="2" fill="#f7f6f3" stroke="#e5e2dc" stroke-width="0.5"/>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="13" font-weight="600" x="120" y="76" text-anchor="middle" fill="#151412">Go through finance</text>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="11" x="120" y="96" text-anchor="middle" fill="#6e6a64">Control the money</text>
+
+      <rect x="280" y="48" width="360" height="68" rx="2" fill="#f7f6f3" stroke="#e5e2dc" stroke-width="0.5"/>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="600" x="460" y="68" text-anchor="middle" fill="#151412">Shadow IT – A View From Behind the Curtain</text>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="11" x="460" y="86" text-anchor="middle" fill="#3d3a36">Technical controls + clearer policy</text>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="11" x="460" y="103" text-anchor="middle" fill="#b5b0a8">Employees will always find a workaround</text>
+
+      <rect x="280" y="132" width="360" height="68" rx="2" fill="#f7f6f3" stroke="#e5e2dc" stroke-width="0.5"/>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="600" x="460" y="152" text-anchor="middle" fill="#151412">Perceptions of IT Managers on Shadow IT</text>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="11" x="460" y="170" text-anchor="middle" fill="#3d3a36">Make IT more agile</text>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="11" x="460" y="187" text-anchor="middle" fill="#b5b0a8">Deliver faster, align with business units</text>
+
+      <rect x="280" y="216" width="360" height="68" rx="2" fill="#f7f6f3" stroke="#e5e2dc" stroke-width="0.5"/>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="600" x="460" y="236" text-anchor="middle" fill="#151412">Shadow IT – A Systematic Literature Review</text>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="11" x="460" y="254" text-anchor="middle" fill="#3d3a36">Run a governance project</text>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="11" x="460" y="271" text-anchor="middle" fill="#b5b0a8">Identify, evaluate, implement top-down</text>
+
+      <rect x="280" y="300" width="360" height="68" rx="2" fill="#f7f6f3" stroke="#e5e2dc" stroke-width="0.5"/>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="600" x="460" y="320" text-anchor="middle" fill="#151412">Who is the IT Department Anyway</text>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="11" x="460" y="338" text-anchor="middle" fill="#3d3a36">Communication + tailored training</text>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="11" x="460" y="355" text-anchor="middle" fill="#b5b0a8">Treat it as a behaviour change problem</text>
+
+      <rect x="280" y="384" width="360" height="68" rx="2" fill="#f7f6f3" stroke="#e5e2dc" stroke-width="0.5"/>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="600" x="460" y="400" text-anchor="middle" fill="#151412">Understanding Shadow IT: IT Accessibility,</text>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="600" x="460" y="416" text-anchor="middle" fill="#151412">Work Overload and Employee Strain</text>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="11" x="460" y="434" text-anchor="middle" fill="#3d3a36">Fix the working environment</text>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="11" x="460" y="451" text-anchor="middle" fill="#b5b0a8">Reduce overload, staff adequately</text>
+
+      <line x1="270" y1="82" x2="270" y2="418" stroke="#e5e2dc" stroke-width="0.5"/>
+      <line x1="270" y1="82" x2="280" y2="82" stroke="#e5e2dc" stroke-width="0.5"/>
+      <line x1="270" y1="418" x2="280" y2="418" stroke="#e5e2dc" stroke-width="0.5"/>
+
+      <line x1="200" y1="82" x2="232" y2="492" stroke="#b5b0a8" stroke-width="0.75" marker-end="url(#arrow)"/>
+      <line x1="270" y1="250" x2="248" y2="492" stroke="#b5b0a8" stroke-width="0.75" marker-end="url(#arrow)"/>
+
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="10" x="340" y="484" text-anchor="middle" fill="#b5b0a8" letter-spacing="1.2">AFTER 11 YEARS OF RESEARCH</text>
+
+      <rect x="40" y="500" width="600" height="56" rx="2" fill="#f7f6f3" stroke="#e5e2dc" stroke-width="0.5"/>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="13" font-weight="600" x="340" y="522" text-anchor="middle" fill="#151412">No consensus on how to fix Shadow IT.</text>
+      <text font-family="Plus Jakarta Sans, sans-serif" font-size="11" x="340" y="542" text-anchor="middle" fill="#6e6a64">Six sources, six different answers — technical, organizational, cultural, financial.</text>
+    </svg>
+
+    <p>Meanwhile, sysadmins on Reddit converged on something none of the papers focused on: <em>"I've found that the best way to control shadow IT is always through finance – if they can't pay for it, they can't use it."</em></p>
 
     <div class="finding">
       <div class="finding-label">What this means for design</div>
-      <p>Shadow IT isn't an IT problem – it's a communication and trust problem between IT, finance, and the rest of the organisation. People keep working around the official system because the official system keeps failing them. Any design response probably needs all three groups in&nbsp;the&nbsp;room.</p>
+      <p>Shadow IT isn't an IT problem – it's a communication and trust problem between IT, finance, and the rest of the organisation.</p>
     </div>
+
   </div>
 
   <!-- 08 OPENS UP -->
   <div class="section" id="s-next">
     <div class="section-index">08 &nbsp; What this opens up</div>
     <h2>Where design could go next</h2>
-    <p>The research points to one area with clear design potential – the approval and request flow that sits between employees, IT, and finance. Right now that flow is either broken (too slow, too bureaucratic) or nonexistent.</p>
-    <p>Getting to a design would mean starting with three groups of people:</p>
+    <p>The research makes one thing clear: Shadow IT isn't a problem design can fully solve. The literature points to organisational agility, culture change, working environment reform, and governance structures — all of which sit outside a designer's scope. No interface fixes a company that's understaffed, moves too slowly, or has a broken relationship between IT and the rest of the business.</p>
+    <p>But there is one area where design could make a meaningful difference — the approval and request flow that sits between employees, IT, and finance. Right now that flow is either broken or nonexistent. Reddit sysadmins identified this as the most actionable lever: if the official path were faster and less painful than the workaround, more people would use it. That's a design problem worth investigating.</p>
+    <p>Getting there would mean starting with three groups of people:</p>
 
     <div class="papers">
       <div class="paper">
@@ -798,9 +968,34 @@ footer {
     <p>The core question those interviews would need to answer is what the official request process would need to look like for employees to actually choose it over a workaround.</p>
   </div>
 
-  <!-- 09 REFLECTION -->
+  <!-- 09 LIMITATIONS -->
+  <div class="section" id="s-limitations" style="border-bottom:none;">
+    <div class="section-index">09 &nbsp; Limitations</div>
+    <h2>What this research can't claim</h2>
+    <p>This was exploratory research, not a validated study. Being clear about what it can and can't support matters.</p>
+    <div class="limitations-list">
+      <div class="limitation-item">
+        <span class="limitation-marker">—</span>
+        <span class="limitation-text"><strong>Reddit sampling bias.</strong> All 75 threads come from people frustrated enough to post publicly. Employees who quietly use workarounds without complaint – likely the majority – are invisible in this dataset.</span>
+      </div>
+      <div class="limitation-item">
+        <span class="limitation-marker">—</span>
+        <span class="limitation-text"><strong>No primary interviews.</strong> Every finding is secondhand. The reasons employees give for bypassing IT on Reddit may differ from what they'd say in a structured interview – or what they'd actually do in practice.</span>
+      </div>
+      <div class="limitation-item">
+        <span class="limitation-marker">—</span>
+        <span class="limitation-text"><strong>Literature spans 11 years.</strong> The oldest paper is from 2014. The tooling landscape – cloud adoption, SaaS proliferation, remote work – has shifted significantly. Some behavioural patterns may no longer hold.</span>
+      </div>
+      <div class="limitation-item">
+        <span class="limitation-marker">—</span>
+        <span class="limitation-text"><strong>Findings aren't validated.</strong> The insight about finance as a leverage point came exclusively from Reddit. It hasn't been tested with IT managers, finance teams, or employees directly. It's a hypothesis for further research, not a confirmed conclusion.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10 REFLECTION -->
   <div class="section reflection-section" id="s-reflection">
-    <div class="section-index">09 &nbsp; Reflection</div>
+    <div class="section-index">10 &nbsp; Reflection</div>
     <h2>What I took from this</h2>
     <p>This was my first self-directed research project – no brief, no framework, no team. The biggest thing it taught me wasn't a finding; it was how to follow a thread. I started looking for billing pain and ended up in academic literature on organizational psychology. That kind of pivot only happens if you stay genuinely curious about what the data is actually saying, rather than confirming what you expected to find.</p>
     <p>It also taught me the difference between a symptom and a root cause. Every billing complaint on Reddit turned out to be a symptom. Shadow IT was the cause. That shift in framing – from "what's broken?" to "why does this keep happening?" – is the part of research I want to keep practising.</p>
@@ -819,30 +1014,27 @@ footer {
 <script>
   const nav = document.getElementById('nav');
   const anav = document.getElementById('anav');
-  const hero = document.getElementById('hero-section');
 
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 10);
     anav.classList.toggle('show', window.scrollY > 10);
   }, { passive: true });
 
-  // keep intersection observer removed – scroll-based show is enough
-
   // Scroll spy
-  const sections = document.querySelectorAll('.section[id]');
+  const sections = document.querySelectorAll('.section[id], .reflection-section[id]');
   const links = document.querySelectorAll('.anav a');
 
-  const spy = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (!e.isIntersecting) return;
-      links.forEach(l => l.classList.remove('on'));
-      const a = document.querySelector(`.anav a[href="#${e.target.id}"]`);
-      if (a) {
-        a.classList.add('on');
-        a.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('on'));
+        const active = document.querySelector(`.anav a[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('on');
       }
     });
-  }, { rootMargin: '-25% 0px -65% 0px' });
+  }, { rootMargin: '-20% 0px -70% 0px' });
 
-  sections.forEach(s => spy.observe(s));
+  sections.forEach(s => observer.observe(s));
 </script>
+</body>
+</html>
