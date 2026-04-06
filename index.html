@@ -42,8 +42,8 @@ nav {
 }
 nav.scrolled { border-color: var(--line); }
 .nav-logo {
-  font-family: 'Crimson Pro', serif; font-size: 1rem; font-weight: 600;
-  color: var(--ink); letter-spacing: -.01em; text-decoration: none;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: .75rem; font-weight: 500;
+  color: var(--muted); letter-spacing: .05em; text-decoration: none;
 }
 .nav-right { display: flex; gap: 2rem; }
 .nav-right a {
@@ -51,6 +51,8 @@ nav.scrolled { border-color: var(--line); }
   letter-spacing: .05em; transition: color .15s; text-decoration: none;
 }
 .nav-right a:hover { color: var(--ink); }
+.nav-email { font-size: .75rem; font-weight: 500; color: var(--muted); letter-spacing: .05em; }
+
 
 .container { max-width: 760px; margin: 0 auto; padding: 0 2rem; }
 
@@ -251,7 +253,7 @@ blockquote:not(.pullquote-text) cite {
   font-family: 'Crimson Pro', serif;
   font-size: 5rem;
   line-height: 1;
-  color: var(--ink);
+  color: var(--ink2);
   font-weight: 400;
   font-style: italic;
   user-select: none;
@@ -262,7 +264,7 @@ blockquote:not(.pullquote-text) cite {
   font-size: clamp(1.15rem, 2.2vw, 1.4rem);
   font-style: italic;
   font-weight: 400;
-  color: var(--ink);
+  color: var(--ink2);
   line-height: 1.55;
   margin: 0 0 0.9rem 0;
   padding: 0;
@@ -659,7 +661,7 @@ footer {
 <nav id="nav">
   <span class="nav-logo">Rita Vaitkūnaitė</span>
   <div class="nav-right">
-    <a href="mailto:ritavaitkunaite@gmail.com">ritavaitkunaite@gmail.com</a>
+    <span class="nav-email">ritavaitkunaite@gmail.com</span>
     <a href="https://www.linkedin.com/in/rita-vaitkūnaitė-62b0981b6/" target="_blank">LinkedIn ↗</a>
   </div>
 </nav>
@@ -972,7 +974,7 @@ footer {
   <div class="section" id="s-limitations" style="border-bottom:none;">
     <div class="section-index">09 &nbsp; Limitations</div>
     <h2>What this research can't claim</h2>
-    <p>This was exploratory research, not a validated study. Being clear about what it can and can't support matters.</p>
+
     <div class="limitations-list">
       <div class="limitation-item">
         <span class="limitation-marker">—</span>
@@ -1004,7 +1006,7 @@ footer {
   <footer>
     <span class="footer-name">Rita Vaitkūnaitė – 2026</span>
     <div class="footer-links">
-      <a href="mailto:ritavaitkunaite@gmail.com">ritavaitkunaite@gmail.com</a>
+      <span style="font-size: 0.8rem; font-weight: 500; color: var(--muted);">ritavaitkunaite@gmail.com</span>
       <a href="https://www.linkedin.com/in/rita-vaitkūnaitė-62b0981b6/" target="_blank">LinkedIn ↗</a>
     </div>
   </footer>
@@ -1027,14 +1029,15 @@ footer {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        links.forEach(l => l.classList.remove('on'));
+        links.forEach(link => link.classList.remove('on'));
         const active = document.querySelector(`.anav a[href="#${entry.target.id}"]`);
-        if (active) active.classList.add('on');
+        if (active) {
+          active.classList.add('on');
+          active.scrollIntoView({ inline: 'nearest', block: 'nearest' });
+        }
       }
     });
   }, { rootMargin: '-20% 0px -70% 0px' });
 
   sections.forEach(s => observer.observe(s));
 </script>
-</body>
-</html>
